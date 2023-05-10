@@ -1,12 +1,16 @@
 <script>
 import NavbarComp from './componets/NavbarComp.vue';
 import axios from 'axios';
+import MainComp from './componets/MainComp.vue';
+import FilmComp from './componets/FilmComp.vue';
 import { store } from './store';
 
 export default {
     name: "app",
     components: {
-        NavbarComp
+        NavbarComp,
+        MainComp,
+        FilmComp
     },
     data() {
         return {
@@ -30,6 +34,7 @@ export default {
 
 <template>
     <NavbarComp @apiCall="AttivaRicerca()" />
+    <MainComp />
 </template>
 
 <style lang="scss">

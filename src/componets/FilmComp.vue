@@ -43,7 +43,7 @@ export default {
 <template>
     <div class="col-2 mb-5">
         <div class="card card-film">
-
+            <img :src="`https://image.tmdb.org/t/p/w342/${Info.poster_path}`" class="card-img-top" alt="">
             <div class="card-body">
                 <h4 class="card-title">{{ TitoloSerie() }}</h4>
                 <hr>
@@ -61,7 +61,12 @@ export default {
 <style lang="scss" scoped>
 .card-film {
     max-height: 250px;
+    width: 200px;
     overflow: hidden visible;
+
+    img {
+        height: 250px;
+    }
 
     #lang_vote {
         display: flex;

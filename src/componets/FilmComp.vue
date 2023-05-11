@@ -35,6 +35,9 @@ export default {
             } else {
                 return this.Info.original_name
             }
+        },
+        Voto() {
+            return Math.ceil(this.Info.vote_average / 2)
         }
     }
 }
@@ -49,7 +52,10 @@ export default {
                 <hr>
                 <div id="lang_vote">
                     <img :src="bandiere(Info.original_language)" alt="">
-                    <h5 class="px-2">{{ Info.vote_average.toFixed(1) }}</h5>
+                    <h5 class="px-2">{{ Voto() }}</h5>
+                    <div>
+                        <i v-for="n in 5" class="fa-star" :class="(n <= Voto()) ? 'fa-solid' : 'fa-regular'"></i>
+                    </div>
                 </div>
 
                 <p class="card-text ">{{ Info.overview }}</p>

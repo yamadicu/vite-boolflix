@@ -16,8 +16,15 @@ export default {
 </script>
 
 <template>
-    <div class="row p-5">
-        <FilmComp v-for="(elem, index) in store.ArrayFilm" :key="index" :InfoFilm="elem" />
+    <div class="p-5">
+
+        <div class="row" v-if="store.ArraySerie.length">
+            <FilmComp v-for="(film, index) in store.ArrayFilm" :key="index" :Info="film" />
+        </div>
+        <div class="row" v-if="store.ArraySerie.length">
+            <FilmComp v-for="(serie, index) in store.ArraySerie" :key="index" :Info="serie" />
+        </div>
+
     </div>
 </template>
 

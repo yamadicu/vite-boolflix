@@ -1,24 +1,58 @@
 <script>
 export default {
     name: 'FilmComp',
-    props: ['InfoFilm'],
-
+    props: ['Info'],
+    methods: {
+        bandiere(x) {
+            x = x.toUpperCase();
+            if (x == 'EN') {
+                x = 'GB'
+                return `https://flagsapi.com/${x}/shiny/64.png`
+            } else if (x == 'JA') {
+                x = 'JP'
+                return `https://flagsapi.com/${x}/shiny/64.png`
+            } else if (x == 'FA') {
+                x = 'BG'
+                return `https://flagsapi.com/${x}/shiny/64.png`
+            } else if (x == 'ZH') {
+                x = 'JP'
+                return `https://flagsapi.com/${x}/shiny/64.png`
+            } else if (x == 'KO') {
+                x = 'HK'
+                return `https://flagsapi.com/${x}/shiny/64.png`
+            } else if (x == 'TA') {
+                x = 'TH'
+                return `https://flagsapi.com/${x}/shiny/64.png`
+            } else if (x == 'XX') {
+                x = 'ZM'
+                return `https://flagsapi.com/${x}/shiny/64.png`
+            }
+            return `https://flagsapi.com/${x}/shiny/64.png`
+        },
+        TitoloSerie() {
+            if (this.Info.original_title) {
+                return this.Info.original_title
+            } else {
+                return this.Info.original_name
+            }
+        }
+    }
 }
 </script>
 
 <template>
     <div class="col-2 mb-5">
         <div class="card card-film">
-            <img src="#" class="card-img-top" :alt="InfoFilm.original_title">
+
             <div class="card-body">
-                <h4 class="card-title">{{ InfoFilm.original_title }}</h4>
+                <h4 class="card-title">{{ TitoloSerie() }}</h4>
                 <hr>
-                <div>
-                    <h5>{{ InfoFilm.original_language }}</h5>
-                    <h5>{{ InfoFilm.vote_average.toFixed(2) }}</h5>
+                <div id="lang_vote">
+                    <img :src="bandiere(Info.original_language)" alt="">
+                    <h5 class="px-2">{{ Info.vote_average.toFixed(1) }}</h5>
                 </div>
 
-                <p class="card-text ">{{ InfoFilm.overview }}</p>
+                <p class="card-text ">{{ Info.overview }}</p>
             </div>
         </div>
     </div>
@@ -28,5 +62,13 @@ export default {
 .card-film {
     max-height: 250px;
     overflow: hidden visible;
+
+    #lang_vote {
+        display: flex;
+
+        img {
+            height: 30px;
+        }
+    }
 }
 </style>

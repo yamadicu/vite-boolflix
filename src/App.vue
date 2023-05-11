@@ -19,12 +19,19 @@ export default {
     },
     methods: {
         AttivaRicerca() {
-            // 
-            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${store.Apikey}&query=${store.Ricerca}`)
+
+            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${import.meta.env.VITE_API_KEY}&query=${store.Ricerca}`)
                 .then((elem) => {
                     console.log(elem.data.results)
                     const selezione = elem.data.results
                     store.ArrayFilm = selezione
+
+                })
+            axios.get(`https://api.themoviedb.org/3/search/tv?api_key=${import.meta.env.VITE_API_KEY}&query=${store.Ricerca}`)
+                .then((elem) => {
+                    console.log(elem.data.results)
+                    const selezione = elem.data.results
+                    store.ArraySerie = selezione
 
                 })
         }

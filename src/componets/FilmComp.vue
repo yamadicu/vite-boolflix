@@ -44,10 +44,14 @@ export default {
 </script>
 
 <template>
-    <div class="col-2 mb-5">
-        <div class="card card-film">
-            <img :src="`https://image.tmdb.org/t/p/w342/${Info.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
+    <div id="comp">
+
+        <div id="card">
+
+            <div id="immagine-principale">
+                <img :src="`https://image.tmdb.org/t/p/w342/${Info.poster_path}`" alt="" />
+            </div>
+            <div id="descrizione">
                 <h4 class="card-title">{{ TitoloSerie() }}</h4>
                 <hr>
                 <div id="lang_vote">
@@ -60,26 +64,59 @@ export default {
 
                 <p class="card-text ">{{ Info.overview }}</p>
             </div>
+
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-.card-film {
-    max-height: 250px;
-    width: 200px;
-    overflow: hidden visible;
+#comp {
 
-    img {
+    display: flex;
+    justify-content: space-between;
+
+    #card {
         height: 250px;
-    }
+        width: 200px;
+        margin: 20px;
+        position: relative;
 
-    #lang_vote {
-        display: flex;
+        #immagine-principale {
+            position: absolute;
+            z-index: 2;
 
-        img {
-            height: 30px;
+            img {
+                height: 250px;
+                width: 200px;
+            }
         }
+
+        #descrizione {
+            position: absolute;
+            overflow: hidden visible;
+            max-height: 250px;
+            display: none;
+
+            #lang_vote {
+                display: flex;
+
+                img {
+                    height: 30px;
+                }
+            }
+        }
+
+        &:hover {
+            #immagine-principale {
+                display: none;
+            }
+
+            #descrizione {
+                display: block;
+            }
+        }
+
+
     }
 }
 </style>
